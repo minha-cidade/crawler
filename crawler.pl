@@ -38,13 +38,13 @@ my $collection = $client->ns("$mongodb_database.$mongodb_collection");
 sub crawl {
 	# Baixa o resultado
 	say "Baixando CSV do site da transparência";
-	system("wget", DOWNLOAD_URL, "-O", ZIP_PATH) == 0
+	system("wget", "-q", DOWNLOAD_URL, "-O", ZIP_PATH) == 0
 		or die "Falha baixando arquivo " . DOWNLOAD_URL;
 
 
 	# Descompacta o arquivo
 	say "Desempacotando arquivo";
-	system("unzip", "-o", ZIP_PATH, CSV_FILENAME, "-d", "/tmp") == 0
+	system("unzip", "-qq", "-o", ZIP_PATH, CSV_FILENAME, "-d", "/tmp") == 0
 		or die "Falha desempacotado arquivo";
 
 
@@ -158,7 +158,7 @@ work;
 
 # Caso a variável de ambiente CRAWLER_SINGLE_RUN estiver definida como true,
 # não inicia o cron para executar o script em loop
-if (defined $ENV{CRAWLER_SINGLE_RUN} && $ENV{CRAWLER_SINGLE_RUN} eq 'true') {
+if (!defined $ENV{CRAWLER_SINGLE_RUN} && $ENV{CRAWLER_SINGLE_RUN} ne 'true') {
 	say "Programando próxima execução para 24:00";
 	my $cron = Schedule::Cron->new(\&work);
 	$cron->add_entry("0 0 * * *");
