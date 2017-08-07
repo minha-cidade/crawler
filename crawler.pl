@@ -157,10 +157,13 @@ say "Executando script pela primeira vez";
 work;
 
 # Caso a variável de ambiente CRAWLER_SINGLE_RUN estiver definida como true,
-# não inicia o cron para executar o script em loop
-if (!defined $ENV{CRAWLER_SINGLE_RUN} && $ENV{CRAWLER_SINGLE_RUN} ne 'true') {
-	say "Programando próxima execução para 24:00";
-	my $cron = Schedule::Cron->new(\&work);
-	$cron->add_entry("0 0 * * *");
-	$cron->run;
+# não inicia o cron para executar o script em loop e termina o programa aqui
+if (defined $ENV{CRAWLER_SINGLE_RUN} && $ENV{CRAWLER_SINGLE_RUN} eq 'true') {
+	say "Terminando programa";
+	exit 0;
 }
+
+say "Programando próxima execução para 24:00";
+my $cron = Schedule::Cron->new(\&work);
+$cron->add_entry("0 0 * * *");
+$cron->run;
