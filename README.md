@@ -1,7 +1,7 @@
 # Crawler
 O Crawler tem a função de periodicamente baixar o banco de dados CSV da
 [Transparência de João Pessoa](http://transparencia.joaopessoa.pb.gov.br/)
-e armazenar seu conteúdo no banco de dados Mongo DB.
+e armazenar seu conteúdo no banco de dados MongoDB.
 
 ## Configuração
 A configuração do crawler é enviada através das seguintes variáveis de ambiente:
