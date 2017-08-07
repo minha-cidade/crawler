@@ -52,7 +52,7 @@ sub crawl {
 	say "Lendo arquivo CSV";
 	my $csv = Text::CSV->new ({
 		binary => 1,
-		sep => "|",
+		sep    => "|",
 	})
 		or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
