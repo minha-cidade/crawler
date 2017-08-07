@@ -6,17 +6,24 @@ e armazenar seu conteúdo no banco de dados Mongo DB.
 ## Configuração
 A configuração do crawler é enviada através das seguintes variáveis de ambiente:
 
-* CRAWLER_MONGO_CONNECTION_STRING (default: "mongodb://localhost")
-  Connection string para o banco de dados MongoDB
+* `CRAWLER_MONGO_CONNECTION_STRING` (default: `"mongodb://localhost"`)
 
-* CRAWLER_MONGO_DATABASE (default: "despesas")
-  Nome do banco de dados usado pelo MongoDB
+  Endereço do banco de dados MongoDB seguindo o formato [Connection String](https://docs.mongodb.com/manual/reference/connection-string/).
 
-* CRAWLER_MONGO_COLLECTION (default: "gastometro")
-  Nome da collection usada pelo MongoDB
 
-* CRAWLER_SINGLE_RUN (default: "false")
-  Executa o crawler apenas uma vez, sem iniciar o scheduler
+* `CRAWLER_MONGO_DATABASE` (default: `"despesas"`)
+
+  Nome do banco de dados usado pelo MongoDB.
+
+
+* `CRAWLER_MONGO_COLLECTION` (default: `"gastometro"`)
+
+  Nome da collection usada pelo MongoDB.
+
+
+* `CRAWLER_SINGLE_RUN` (default: `"false"`)
+
+  Executa o crawler apenas uma vez, sem iniciar o scheduler.
 
 ## Instalação
 Na pasta do repositório, execute o seguinte comando para criar uma imagem docker
