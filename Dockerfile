@@ -3,6 +3,9 @@ FROM perl:5.22
 COPY . /app
 WORKDIR /app
 
-RUN cpanm --installdeps . -n
+RUN apt-get update \
+	&& apt-get install -y unzip \
+	&& cpanm App::cpm \
+	&& cpm install -g
 
-CMD ["perl", "script.pl"]
+CMD ["perl", "crawler.pl"]
